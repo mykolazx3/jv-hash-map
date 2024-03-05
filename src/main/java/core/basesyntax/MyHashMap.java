@@ -1,6 +1,5 @@
 package core.basesyntax;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class MyHashMap<K, V> implements MyMap<K, V> {
@@ -25,7 +24,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
         if (currentEntity == null) {
             table[entityIndex] = newNode;
-            size++;
         } else {
             while (true) {
                 if (Objects.equals(currentEntity.key, key)) {
@@ -34,12 +32,12 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
                 }
                 if (currentEntity.next == null) {
                     currentEntity.next = newNode;
-                    size++;
-                    return;
+                    break;
                 }
                 currentEntity = currentEntity.next;
             }
         }
+        size++;
     }
 
     private int generateHash(K key) {
